@@ -1,5 +1,5 @@
-const config = require("./config/config.json");
-const stringGeneratorModule = require("../utilities/randomStringGenerator/randomStringGenerator");
+const config = require("../../config/config.json");
+const stringGeneratorModule = require("../../utilities/randomStringGenerator/randomStringGenerator");
 const lengthRandomString = config.randomStringLength;
 const state = stringGeneratorModule.generateRandomString(lengthRandomString);
 
