@@ -1,4 +1,4 @@
-# Fresh
+# Eden
 Purpose of this application is to purge songs that have been in a playlist too long, allowing users to be at peace and not annoyed with old repetitive songs that have outlived their time.
 
 ## Goals
