@@ -1,7 +1,9 @@
+const { generateRandomString } = require("../../utilities/randomStringGenerator/randomStringGenerator");
+
 const config = require("../../config/config.json");
-const stringGeneratorModule = require("../../utilities/randomStringGenerator/randomStringGenerator");
 const lengthRandomString = config.randomStringLength;
-const state = stringGeneratorModule.generateRandomString(lengthRandomString);
+const state = generateRandomString(lengthRandomString);
+let token = undefined;
 
 function loginController (req, res) {
     if (!config.clientID || !config.clientSecret || !config.redirectURI) {
@@ -43,8 +45,7 @@ async function refreshTokenController(req, res) {
     params.append("client_id", config.clientID);
     params.append("grant_type", "refresh_token");
     params.append("refresh_token", refreshToken);
-    let temp_token = await getToken(params, config.clientID, config.clientSecret);
-    console.log(temp_token);
+    token = await getToken(params, config.clientID, config.clientSecret);
 }
 
 function getToken(params, clientId, clientSecret) {
@@ -63,5 +64,6 @@ function getToken(params, clientId, clientSecret) {
 module.exports = {
     loginController,
     callbackController,
-    refreshTokenController
+    refreshTokenController,
+    token
 }
