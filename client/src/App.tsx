@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
+import Header from './components/header/header';
 
 function App() {
   return (
     <div className="app">
-      <div className="header">Spotify</div>
-      
+      <Header></Header>      
     </div>
   );
 }
