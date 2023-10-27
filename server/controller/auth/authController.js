@@ -6,6 +6,7 @@ const state = generateRandomString(lengthRandomString);
 let token = undefined;
 
 function loginController (req, res) {
+    console.log("login received");
     if (!config.clientID || !config.clientSecret || !config.redirectURI) {
         return res.status(500).send("Error: Client ID cannot be found");
     }
@@ -13,19 +14,24 @@ function loginController (req, res) {
     const params = new URLSearchParams();
     params.append("client_id", config.clientID);
     params.append("response_type", "code");
-    params.append("redirect_uri", "http://localhost:3000/callback");
+    params.append("redirect_uri", config.redirectURI);
     params.append("scope", "user-read-private user-read-email");
     params.append("state", state);
 
-    res.redirect(`https://accounts.spotify.com/authorize?${params.toString()}`);
+    const loginUrl = `https://accounts.spotify.com/authorize?${params.toString()}`;
+    res.redirect(loginUrl);
 }
 
 async function callbackController (req, res) {
+    console.log("callback received");
     const code = req.query.code;
     const state = req.query.state;
+    const successParams = new URLSearchParams();
+
 
     if (!code || !state) {
         //Handle Failure
+        successParams.append("success", false);
     } else {
         const params = new URLSearchParams();
         params.append("client_id", config.clientID);
@@ -35,8 +41,10 @@ async function callbackController (req, res) {
         params.append("state", state);
         token = await getToken(params, config.clientID, config.clientSecret);
         console.log(token);
-        res.redirect("/");
+
+        successParams.append("success", true);
     }
+    res.redirect(`http://localhost:3000/?${successParams.toString()}`);
 }
 
 async function refreshTokenController(req, res) { 

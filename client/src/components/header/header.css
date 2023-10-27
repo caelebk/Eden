@@ -23,6 +23,7 @@
     height: 80%;
     width: 15%;
     color: rgb(30, 215, 96);
+    cursor: pointer;
 }
 .header .login-spotify .logo {
     max-width: 80%;
