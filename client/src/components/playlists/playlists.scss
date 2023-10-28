@@ -1,0 +1,11 @@
+.playlists-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgb(40,40,40);
+    margin: 1rem 2rem;
+    height: fit-content;
+    width: auto;
+    padding: 1rem;
+    border-radius: 50px;
+}

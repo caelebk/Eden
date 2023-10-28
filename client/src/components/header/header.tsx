@@ -1,28 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import './header.css';
+import './header.scss';
 import logo from "../../resources/images/spotify_logo.png"
 
-export default function Header() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+interface HeaderProps {
+    isLoggedIn: boolean
+}
 
-    useEffect(() => {
-        const queryParams = new URLSearchParams(window.location.search);
-        const status = queryParams.get('success') === "true";
-        setIsLoggedIn(status);
-    });
+export default function Header(props: HeaderProps) {
     return ( 
     <div className='header'>
-        <div className="title">Elysian</div>
+        <header className="title">Elysian</header>
         {
-            !isLoggedIn ?
+            !props.isLoggedIn ?
             (        
-            <a className="login-spotify" href={"http://localhost:3001/login"}>
+            <a className="login-spotify" href={"http://localhost:3001/auth/login"}>
                 <img className="logo" src={logo} alt="Spotify"/>
             </a>
             ) 
                 :
             (
-                <div>Authenticated</div>
+            <a className="login-spotify" href={"http://localhost:3001/auth/logout"}>
+                <span>Log Out</span>
+            </a>            
             )
         }
 

@@ -1,0 +1,29 @@
+.profile {
+    display: flex;
+    background-color: rgb(40, 40, 40);
+    margin: 1rem 2rem;
+    padding: 2rem;
+    border-radius: 50px;
+    width: auto;
+    .profile-img {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
+    }
+    .profile-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        list-style: none;
+        .profile-list-item-title {
+            font-size: 3rem;
+            font-weight: 900;
+        }
+        .profile-list-item {
+            font-size: 1.5rem;
+            text-align: left;
+        }
+    }
+}
